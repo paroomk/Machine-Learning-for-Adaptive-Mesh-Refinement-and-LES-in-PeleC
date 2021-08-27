@@ -269,7 +269,7 @@ We carried out several tests to compare the performance of the various neural ne
 
 \subsubsection{Feature Importance}
 
-Permutation feature importance is used to study the relative importance of the input features for FCNN (n=1). Figure \label{fig:perm} shows the variation in mean squared error when the column corresponding to a particular feature is randomly permuted. We tried permuting pre-training and post-training. In the post-training approach, the features of the test data set are permuted after training. This is a good indicator of the dependence of the learned model on the different features.
+Permutation feature importance is used to study the relative importance of the input features for FCNN (n=1). Figure \label{fig:perm} shows the variation in mean squared error when the column corresponding to a particular feature is randomly permuted. We tried permuting pre-training and post-training. In the post-training approach, the features of the test data set are permuted after training. This is a good indicator of the dependence of the learned model on the different features (refer to lines 397 to 401 in regression.py). 
 
 	\begin{figure}
 	\centering
@@ -284,7 +284,7 @@ Permutation feature importance is used to study the relative importance of the i
     	\caption{Spearman correlation: Indicates montonic relationship}
     \end{figure}
 
-From figure \ref{fig:perm}, the trained model seems to rely heavily on $T_x$ and velocity gradients to make the predictions.The pre-training approach indicates that the mean squared error is most affected by permutation of velocity gradients. These results are commensurate with our understanding of error arising from subgrid scale stresses.
+From figure \ref{fig:perm}, the trained model seems to rely heavily on $T_x$ and velocity gradients to make the predictions.The pre-training approach indicates that the mean squared error is most affected by permutation of velocity gradients. These results are commensurate with our understanding of error arising from subgrid scale stresses (refer to lines 197 to 200 in regression.py).
 
 We also computed the Spearman correlation of the different features to identify variables that are monotonically related. The results indicate that Pressure, density and internal energy are highly correlated and therefore any two of them could be discarded without affecting model performance. However, the permutation feature importance results show that these variables have little to no bearing on the performance. Therefore, all three can be removed without affecting performance. This was verified by testing. 
 
